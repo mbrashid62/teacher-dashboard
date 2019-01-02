@@ -1,0 +1,28 @@
+.exam-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid lightgray;
+  margin-bottom: 15px;
+}
+
+.entry-container {
+  display: flex;
+  justify-content: center;
+}
+
+.entry-container.failing {
+  background-color: rgba(200, 0, 0, 0.8);
+}
+
+p {
+  height: 40px;
+  width: 20vw;
+  padding: 5px;
+  letter-spacing: 1px;
+  font-family: 'Lato', sans-serif;
+}
+
+.delete-link:hover {
+  cursor: pointer;
+}

@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 import StudentInput from '../src/components/StudentInput';
+import EntryList from '../src/components/EntryList';
+import Stats from '../src/components/Stats';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <p>Welcome</p>
+      <div className="app">
+        <header className="app-header">
+          <p className="greeting">Welcome! Enter Grades Below.</p>
         </header>
         <StudentInput />
+        <EntryList />
+        <Stats />
       </div>
     );
   }
