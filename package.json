@@ -67,7 +67,7 @@
   "bugs": {
     "url": "https://github.com/facebook/create-react-app/issues"
   },
-  "homepage": "http://frozen-mountain-79316.herokuapp.com/",
+  "homepage": "http://frozen-mountain-79316.herokuapp.com/exam-facade",
   "engines": {
     "node": "9.10.0",
     "npm": "5.6.0",
