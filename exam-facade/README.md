@@ -1,3 +1,7 @@
+## Teacher Dashboard.
+
+This is an application that allows a teacher to enter exam scores for their students and analyze the results.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
