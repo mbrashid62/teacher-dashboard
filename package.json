@@ -10,7 +10,7 @@
     "e2e": "tasks/e2e-simple.sh",
     "e2e:docker": "tasks/local-test.sh",
     "publish": "tasks/publish.sh",
-    "start": "cd exam-facade && node server.js",
+    "start": "cd app && node server.js",
     "screencast": "node ./tasks/screencast.js",
     "screencast:error": "svg-term --cast jyu19xGl88FQ3poMY8Hbmfw8y --out screencast-error.svg --window --at 12000 --no-cursor",
     "test": "cd packages/react-scripts && node bin/react-scripts.js test",
