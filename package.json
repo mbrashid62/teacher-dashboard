@@ -17,6 +17,11 @@
     "format": "prettier --trailing-comma es5 --single-quote --write 'packages/*/*.js' 'packages/*/!(node_modules)/**/*.js'",
     "compile:lockfile": "node tasks/compile-lockfile.js"
   },
+  "dependencies": {
+    "express": "^4.16.4",
+    "express-favicon": "^2.0.1",
+    "path": "^0.12.7"
+  },
   "devDependencies": {
     "eslint": "5.6.0",
     "execa": "1.0.0",
