@@ -74,6 +74,9 @@ button:disabled {
   background-color: rgba(200, 0, 0, 0.8);
 }
 p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 40px;
   width: 20vw;
   padding: 5px;
@@ -83,4 +86,4 @@ p {
 .delete-link:hover {
   cursor: pointer;
 }
-/*# sourceMappingURL=main.945cf2b0.chunk.css.map */
+/*# sourceMappingURL=main.b8e1530c.chunk.css.map */
