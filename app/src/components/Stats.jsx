@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 
 const getComputedStats = (scores) => {
   let count  = 0;
@@ -33,6 +34,7 @@ export class Stats extends React.Component {
   };
 
   static getDerivedStateFromProps(props, state) {
+    // when exams are found, re-calculate stats
     const scores = Object.values(props.entries);
     if (scores.length) {
       return {
@@ -51,6 +53,11 @@ export class Stats extends React.Component {
   };
 
   render() {
+    // if no exams are found do not render markup
+    if (_.isEmpty(this.props.entries)) {
+      return null;
+    }
+
     return (
       <div className="stats-container">
         <p>Class Average: {this.state.mean}</p>

@@ -26,6 +26,8 @@ p {
   font-family: 'Lato', sans-serif;
 }
 
+.entry-container .grade:hover,
 .delete-link:hover {
   cursor: pointer;
+  text-decoration: underline;
 }
