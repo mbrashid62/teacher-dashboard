@@ -5,7 +5,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import './EntryList.css';
-import { remove as deleteEntry } from '../actions/examEntry';
+import {
+  remove as deleteEntry,
+  openEdit,
+} from '../actions/examEntry';
 
 export class EntryList extends Component {
 
@@ -14,19 +17,25 @@ export class EntryList extends Component {
   static propTypes = {
     entries: PropTypes.object.isRequired,
     dispatchDeleteEntry: PropTypes.func.isRequired,
+    dispatchOpenEdit: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
     entries: {},
     dispatchDeleteEntry: () => {},
+    dispatchOpenEdit: () => {},
   };
 
   onDeleteClick = (id) => {
     this.props.dispatchDeleteEntry(id);
   };
 
+  onGradeClick = (id, grade) => {
+    this.props.dispatchOpenEdit(id, grade);
+  };
+
   render() {
-    if (this.props.entries === {}) {
+    if (_.values(this.props.entries).length <= 1) {
       return null;
     }
 
@@ -40,8 +49,8 @@ export class EntryList extends Component {
             key={i}
           >
             <p>{entry.name}</p>
-            <p>{entry.grade}</p>
-            <p className="delete-link" onClick={() => this.onDeleteClick(entry.id)}>x</p>
+            <p onClick={() => this.onGradeClick(entry.id, entry.grade)}>{entry.grade}</p>
+            <p className="delete-link" onClick={() => this.onDeleteClick(entry.id)}>X</p>
           </div>
         ))}
       </div>
@@ -53,4 +62,5 @@ export default connect((state) => ({
   entries: state.examEntries,
 }), ({
   dispatchDeleteEntry: deleteEntry,
+  dispatchOpenEdit: openEdit,
 }))(EntryList);
