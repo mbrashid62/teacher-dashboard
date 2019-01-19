@@ -15,19 +15,24 @@
       var a = n(0),
         r = n.n(a),
         i = n(18),
-        c = n.n(i),
-        o = n(4),
-        l = n(7),
-        u = n(12),
-        s = n(8),
-        d = n(11),
+        o = n.n(i),
+        c = n(4),
+        s = n(7),
+        l = n(12),
+        u = n(10),
+        d = n(8),
         p = n.n(d),
         m = 'CREATE_EXAM_ENTRY',
+        h = 'UPDATE_EXAM_ENTRY',
         E = 'DELETE_EXAM_ENTRY',
-        h = 'OPEN_EDIT',
-        f = 'CLOSE_EDIT',
-        b = { edit: { isOpen: !1, entry: {} } },
-        y = Object(l.c)({
+        f = 'OPEN_EDIT',
+        y = 'CLOSE_EDIT',
+        g = 'SAVE_EDIT',
+        v = function() {
+          return { type: y, payload: {} };
+        },
+        b = { isOpen: !1, entry: {} },
+        O = Object(s.c)({
           app: function() {
             var e =
               arguments.length > 0 && void 0 !== arguments[0]
@@ -40,56 +45,71 @@
             var e =
                 arguments.length > 0 && void 0 !== arguments[0]
                   ? arguments[0]
-                  : b,
+                  : {},
               t = arguments.length > 1 ? arguments[1] : void 0;
             switch (t.type) {
+              case h:
               case m:
-                return Object(s.a)(
+                return Object(u.a)(
                   {},
                   e,
-                  Object(u.a)(
+                  Object(l.a)(
                     {},
                     t.payload.id,
-                    Object(s.a)({}, t.payload.data, { id: t.payload.id })
+                    Object(u.a)({}, t.payload.data, { id: t.payload.id })
                   )
                 );
               case E:
-                return Object(s.a)(
+                return Object(u.a)(
                   {},
                   Object(d.reject)(e, function(e) {
                     return e.id === t.payload.id;
                   })
                 );
-              case h:
-                return Object(s.a)({}, e, {
-                  edit: {
-                    isOpen: !0,
-                    entry: { id: t.payload.id, grade: t.payload.grade },
-                  },
-                });
+              default:
+                return e;
+            }
+          },
+          edit: function() {
+            var e =
+                arguments.length > 0 && void 0 !== arguments[0]
+                  ? arguments[0]
+                  : b,
+              t = arguments.length > 1 ? arguments[1] : void 0;
+            switch (t.type) {
               case f:
-                return Object(s.a)({}, e, { edit: { isOpen: !1, entry: {} } });
+                return {
+                  isOpen: !0,
+                  entry: {
+                    id: t.payload.id,
+                    name: t.payload.name,
+                    grade: t.payload.grade,
+                  },
+                };
+              case g:
+              case y:
+                return { isOpen: !1, entry: {} };
               default:
                 return e;
             }
           },
         }),
-        g = n(20);
+        j = n(20);
       n(32);
-      var O = n(1),
-        v = n(2),
-        j = n(5),
+      var C = n(1),
+        N = n(2),
+        S = n(5),
         w = n(3),
-        N = n(6),
-        C = (n(34), n(36), { ENTER: 13 }),
-        S = (function(e) {
+        k = n(6),
+        I = (n(34), n(36), { ENTER: 13 }),
+        R = (function(e) {
           function t() {
             var e, n;
-            Object(O.a)(this, t);
+            Object(C.a)(this, t);
             for (var a = arguments.length, r = new Array(a), i = 0; i < a; i++)
               r[i] = arguments[i];
             return (
-              ((n = Object(j.a)(
+              ((n = Object(S.a)(
                 this,
                 (e = Object(w.a)(t)).call.apply(e, [this].concat(r))
               )).nameInputRef = null),
@@ -99,11 +119,11 @@
                 n.isValidInput() ? n.createStudent() : n.showError();
               }),
               (n.onNameType = function(e) {
-                e.keyCode === C.ENTER && n.onStudentSubmitAttempt(),
+                e.keyCode === I.ENTER && n.onStudentSubmitAttempt(),
                   n.setState({ name: e.target.value });
               }),
               (n.onKeyDown = function(e) {
-                e.keyCode === C.ENTER && n.onStudentSubmitAttempt();
+                e.keyCode === I.ENTER && n.onStudentSubmitAttempt();
               }),
               (n.onGradeChange = function(e) {
                 var t = parseInt(e.target.value);
@@ -133,8 +153,8 @@
             );
           }
           return (
-            Object(N.a)(t, e),
-            Object(v.a)(t, [
+            Object(k.a)(t, e),
+            Object(N.a)(t, [
               {
                 key: 'render',
                 value: function() {
@@ -178,111 +198,113 @@
             t
           );
         })(a.Component);
-      S.displayName = 'src/components/StudentInput';
-      var k = Object(o.b)(null, {
+      R.displayName = 'src/components/StudentInput';
+      var D = Object(c.b)(null, {
           dispatchCreateExamEntry: function(e, t) {
             return { type: m, payload: { id: e, data: t } };
           },
-        })(S),
-        I = n(21),
-        x = n.n(I),
-        D = (n(39),
+        })(R),
+        T = n(21),
+        _ = n.n(T),
+        A = (n(39),
         (function(e) {
           function t() {
             var e, n;
-            Object(O.a)(this, t);
+            Object(C.a)(this, t);
             for (var a = arguments.length, r = new Array(a), i = 0; i < a; i++)
               r[i] = arguments[i];
             return (
-              ((n = Object(j.a)(
+              ((n = Object(S.a)(
                 this,
                 (e = Object(w.a)(t)).call.apply(e, [this].concat(r))
               )).onDeleteClick = function(e) {
-                n.props.dispatchDeleteEntry(e);
+                n.props.entryInEditState.id === e &&
+                  n.props.dispatchCloseEdit(),
+                  n.props.dispatchDeleteEntry(e);
               }),
-              (n.onGradeClick = function(e, t) {
-                n.props.dispatchOpenEdit(e, t);
+              (n.onGradeClick = function(e, t, a) {
+                n.props.dispatchOpenEdit(e, t, a);
               }),
               n
             );
           }
           return (
-            Object(N.a)(t, e),
-            Object(v.a)(t, [
+            Object(k.a)(t, e),
+            Object(N.a)(t, [
               {
                 key: 'render',
                 value: function() {
                   var e = this;
-                  return p.a.values(this.props.entries).length <= 1
-                    ? null
-                    : r.a.createElement(
+                  return r.a.createElement(
+                    'div',
+                    { className: 'exam-list' },
+                    p.a.map(this.props.entries, function(t, n) {
+                      return r.a.createElement(
                         'div',
-                        { className: 'exam-list' },
-                        p.a.map(this.props.entries, function(t, n) {
-                          return r.a.createElement(
-                            'div',
-                            {
-                              className: x()('entry-container', {
-                                failing: t.grade <= 65,
-                              }),
-                              key: n,
+                        {
+                          className: _()('entry-container', {
+                            failing: t.grade <= 65,
+                          }),
+                          key: n,
+                        },
+                        r.a.createElement('p', null, t.name),
+                        r.a.createElement(
+                          'p',
+                          {
+                            onClick: function() {
+                              return e.onGradeClick(t.id, t.name, t.grade);
                             },
-                            r.a.createElement('p', null, t.name),
-                            r.a.createElement(
-                              'p',
-                              {
-                                onClick: function() {
-                                  return e.onGradeClick(t.id, t.grade);
-                                },
-                              },
-                              t.grade
-                            ),
-                            r.a.createElement(
-                              'p',
-                              {
-                                className: 'delete-link',
-                                onClick: function() {
-                                  return e.onDeleteClick(t.id);
-                                },
-                              },
-                              'X'
-                            )
-                          );
-                        })
+                            className: 'grade',
+                          },
+                          t.grade
+                        ),
+                        r.a.createElement(
+                          'p',
+                          {
+                            className: 'delete-link',
+                            onClick: function() {
+                              return e.onDeleteClick(t.id);
+                            },
+                          },
+                          'X'
+                        )
                       );
+                    })
+                  );
                 },
               },
             ]),
             t
           );
         })(a.Component));
-      (D.displayName = 'src/EntryList'),
-        (D.defaultProps = {
+      (A.displayName = 'src/EntryList'),
+        (A.defaultProps = {
           entries: {},
           dispatchDeleteEntry: function() {},
           dispatchOpenEdit: function() {},
         });
-      var T = Object(o.b)(
+      var x = Object(c.b)(
           function(e) {
-            return { entries: e.examEntries };
+            return { entries: e.examEntries, entryInEditState: e.edit.entry };
           },
           {
             dispatchDeleteEntry: function(e) {
               return { type: E, payload: { id: e } };
             },
-            dispatchOpenEdit: function(e, t) {
-              return { type: h, payload: { id: e, grade: t } };
+            dispatchOpenEdit: function(e, t, n) {
+              return { type: f, payload: { id: e, name: t, grade: n } };
             },
+            dispatchCloseEdit: v,
           }
-        )(D),
-        R = (function(e) {
+        )(A),
+        G = (function(e) {
           function t() {
             var e, n;
-            Object(O.a)(this, t);
+            Object(C.a)(this, t);
             for (var a = arguments.length, r = new Array(a), i = 0; i < a; i++)
               r[i] = arguments[i];
             return (
-              ((n = Object(j.a)(
+              ((n = Object(S.a)(
                 this,
                 (e = Object(w.a)(t)).call.apply(e, [this].concat(r))
               )).state = { min: 0, max: 0, mean: 0 }),
@@ -290,35 +312,37 @@
             );
           }
           return (
-            Object(N.a)(t, e),
-            Object(v.a)(
+            Object(k.a)(t, e),
+            Object(N.a)(
               t,
               [
                 {
                   key: 'render',
                   value: function() {
-                    return r.a.createElement(
-                      'div',
-                      { className: 'stats-container' },
-                      r.a.createElement(
-                        'p',
-                        null,
-                        'Class Average: ',
-                        this.state.mean
-                      ),
-                      r.a.createElement(
-                        'p',
-                        null,
-                        'Lowest Score: ',
-                        this.state.min
-                      ),
-                      r.a.createElement(
-                        'p',
-                        null,
-                        'Highest Score: ',
-                        this.state.max
-                      )
-                    );
+                    return p.a.isEmpty(this.props.entries)
+                      ? null
+                      : r.a.createElement(
+                          'div',
+                          { className: 'stats-container' },
+                          r.a.createElement(
+                            'p',
+                            null,
+                            'Class Average: ',
+                            this.state.mean
+                          ),
+                          r.a.createElement(
+                            'p',
+                            null,
+                            'Lowest Score: ',
+                            this.state.min
+                          ),
+                          r.a.createElement(
+                            'p',
+                            null,
+                            'Highest Score: ',
+                            this.state.max
+                          )
+                        );
                   },
                 },
               ],
@@ -328,7 +352,7 @@
                   value: function(e, t) {
                     var n = Object.values(e.entries);
                     return n.length
-                      ? Object(s.a)(
+                      ? Object(u.a)(
                           {},
                           t,
                           (function(e) {
@@ -355,43 +379,83 @@
             t
           );
         })(r.a.Component);
-      R.displayName = 'src/components/Stats';
-      var _ = Object(o.b)(function(e) {
+      G.displayName = 'src/components/Stats';
+      var M = Object(c.b)(function(e) {
           return { entries: e.examEntries };
-        })(R),
-        A = (n(41),
+        })(G),
+        X = (n(41),
         (function(e) {
           function t() {
+            var e, n;
+            Object(C.a)(this, t);
+            for (var a = arguments.length, r = new Array(a), i = 0; i < a; i++)
+              r[i] = arguments[i];
             return (
-              Object(O.a)(this, t),
-              Object(j.a)(this, Object(w.a)(t).apply(this, arguments))
+              ((n = Object(S.a)(
+                this,
+                (e = Object(w.a)(t)).call.apply(e, [this].concat(r))
+              )).state = { grade: '' }),
+              (n.inputEditRef = {}),
+              (n.onGradeEdit = function(e) {
+                var t = parseInt(e.target.value);
+                t < 0 || t > 100
+                  ? (n.inputEditRef.value = n.state.grade)
+                  : n.setState({ grade: t });
+              }),
+              (n.onSave = function() {
+                var e = { name: n.props.studentName, grade: n.state.grade };
+                n.props.dispatchUpdateEntry(n.props.id, e),
+                  n.props.dispatchCloseModal();
+              }),
+              n
             );
           }
           return (
-            Object(N.a)(t, e),
-            Object(v.a)(t, [
+            Object(k.a)(t, e),
+            Object(N.a)(t, [
               {
                 key: 'render',
                 value: function() {
+                  var e = this;
                   return this.props.isOpen
-                    ? r.a.createElement(
+                    ? (console.log('in Render: ', this.state.grade),
+                      r.a.createElement(
                         'div',
                         { className: 'edit-modal' },
                         r.a.createElement(
                           'p',
                           null,
-                          'Edit the following Exam:'
+                          'Edit ',
+                          this.props.studentName,
+                          "'s exam:"
                         ),
                         r.a.createElement('input', {
+                          onChange: this.onGradeEdit,
+                          ref: function(t) {
+                            return (e.inputEditRef = t);
+                          },
                           className: 'grade-input',
                           type: 'number',
                           min: '0',
                           max: '100',
-                          placeholder: this.props.gradeToEdit,
+                          placeholder: this.props.initialGrade,
                         }),
-                        r.a.createElement('button', null, 'Save'),
-                        r.a.createElement('button', null, 'Close')
-                      )
+                        r.a.createElement(
+                          'button',
+                          {
+                            onClick: this.onSave,
+                            disabled:
+                              !this.state.grade ||
+                              this.state.grade === this.props.initialGrade,
+                          },
+                          'Save'
+                        ),
+                        r.a.createElement(
+                          'button',
+                          { onClick: this.props.dispatchCloseModal },
+                          'Close'
+                        )
+                      ))
                     : null;
                 },
               },
@@ -399,31 +463,33 @@
             t
           );
         })(a.Component));
-      A.displayName = 'app/src/components/EditModal';
-      var G = Object(o.b)(
+      X.displayName = 'app/src/components/EditModal';
+      var L = Object(c.b)(
           function(e) {
             return {
-              isOpen: e.examEntries.edit.isOpen,
-              gradeToEdit: e.examEntries.edit.entry.grade,
-              id: e.examEntries.edit.entry.id,
+              isOpen: e.edit.isOpen,
+              id: e.edit.entry.id,
+              studentName: e.edit.entry.name,
+              initialGrade: e.edit.entry.grade,
             };
           },
           {
-            dispatchCloseModal: function() {
-              return { type: f, payload: {} };
+            dispatchCloseModal: v,
+            dispatchUpdateEntry: function(e, t) {
+              return { type: h, payload: { id: e, data: t } };
             },
           }
-        )(A),
-        M = (function(e) {
+        )(X),
+        P = (function(e) {
           function t() {
             return (
-              Object(O.a)(this, t),
-              Object(j.a)(this, Object(w.a)(t).apply(this, arguments))
+              Object(C.a)(this, t),
+              Object(S.a)(this, Object(w.a)(t).apply(this, arguments))
             );
           }
           return (
-            Object(N.a)(t, e),
-            Object(v.a)(t, [
+            Object(k.a)(t, e),
+            Object(N.a)(t, [
               {
                 key: 'render',
                 value: function() {
@@ -439,10 +505,10 @@
                         'Welcome! Enter Grades Below.'
                       )
                     ),
-                    r.a.createElement(k, null),
-                    r.a.createElement(G, null),
-                    r.a.createElement(T, null),
-                    r.a.createElement(_, null)
+                    r.a.createElement(D, null),
+                    r.a.createElement(L, null),
+                    r.a.createElement(x, null),
+                    r.a.createElement(M, null)
                   );
                 },
               },
@@ -457,14 +523,14 @@
             /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
           )
       );
-      var L = (function() {
+      var V = (function() {
         var e =
             arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {},
-          t = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || l.d;
-        return Object(l.e)(y, e, t(Object(l.a)(g.a)));
+          t = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || s.d;
+        return Object(s.e)(O, e, t(Object(s.a)(j.a)));
       })({});
-      c.a.render(
-        r.a.createElement(o.a, { store: L }, r.a.createElement(M, null)),
+      o.a.render(
+        r.a.createElement(c.a, { store: V }, r.a.createElement(P, null)),
         document.getElementById('root')
       ),
         'serviceWorker' in navigator &&
@@ -475,4 +541,4 @@
   },
   [[22, 2, 1]],
 ]);
-//# sourceMappingURL=main.e957b95b.chunk.js.map
+//# sourceMappingURL=main.feb4621f.chunk.js.map

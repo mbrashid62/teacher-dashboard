@@ -83,15 +83,17 @@ p {
   letter-spacing: 1px;
   font-family: Lato, sans-serif;
 }
-.delete-link:hover {
+.delete-link:hover,
+.entry-container .grade:hover {
   cursor: pointer;
+  text-decoration: underline;
 }
 .edit-modal {
   display: flex;
   position: absolute;
   width: 50%;
   left: 25%;
-  bottom: 0;
+  bottom: 40vh;
   border: 2px solid #282c34;
   border-radius: 4px;
   background-color: #fff;
@@ -116,4 +118,4 @@ p {
   opacity: 0.4;
   z-index: -1;
 }
-/*# sourceMappingURL=main.b0faec4b.chunk.css.map */
+/*# sourceMappingURL=main.b1aa322c.chunk.css.map */
